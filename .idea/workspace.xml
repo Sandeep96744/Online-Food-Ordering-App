@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0a6ef37-d3e7-4362-85d1-a1fc7908dc92" name="Changes" comment="Updated files">
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/RestaurantServices.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/service/RestaurantServicesImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/CustomerDatabaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/repository/CustomerDatabaseRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/restaurantManagementModule/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/restaurantManagementModule/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/util/JdbcConnectionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/JdbcConnectionUtil.java" afterDir="false" />
     </list>
@@ -19,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -124,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716271175920</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Updated files">
+      <option name="closed" value="true" />
+      <created>1716279584037</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716279584037</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

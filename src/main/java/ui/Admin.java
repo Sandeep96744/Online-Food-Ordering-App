@@ -161,7 +161,11 @@ public class Admin {
             int customerChoice = Integer.parseInt(sc.nextLine().strip());
             switch (customerChoice) {
                 case 1: {
-
+                    System.out.println("Viewing all Restaurants:");
+                    db.getAllRestaurants().forEach(e-> {
+                        System.out.println(e);
+                        e.displayMenu();
+                    });
                     break;
                 }
                 case 2: {
@@ -184,7 +188,7 @@ public class Admin {
             ch = sc.nextLine().strip().charAt(0);
         }
         System.out.println("Thank You!");
-    }
+}
 
     static int idCnt = 1;
     public static void adminLogin(Scanner sc) {
