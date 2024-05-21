@@ -1,5 +1,6 @@
 package repository;
 
+import restaurantManagementModule.CuisineType;
 import restaurantManagementModule.MenuItem;
 import restaurantManagementModule.Restaurant;
 
@@ -14,9 +15,11 @@ public interface RestaurantDatabaseRepository {
 
     public Restaurant getRestaurantById(int id);
 
-    public Optional<Restaurant> getRestaurantByLocation(String location);
+    public List<Restaurant> getRestaurantByLocation(String location);
 
-    public Optional<Restaurant> getRestaurantByName(String name);
+    public List<Restaurant> getRestaurantByType(CuisineType type);
+
+    public Restaurant getRestaurantByName(String name);
 
     public List<Restaurant> getAllRestaurants();
 
@@ -24,7 +27,7 @@ public interface RestaurantDatabaseRepository {
 
     public List<Restaurant> getAllDeActiveRestaurants();
 
-    public Optional<Restaurant> updateActivationStatus(Restaurant restaurant);
+    public boolean updateActivationStatus(int id, boolean status);
 
-    public Optional<Restaurant> deleteRestaurant(int id);
+    public boolean deleteRestaurant(int id);
 }

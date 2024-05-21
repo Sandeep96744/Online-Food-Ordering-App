@@ -64,9 +64,16 @@ public class Admin {
 //        db.updateMenuItem(103, new MenuItem("Paneer Chilli", ItemType.VEG, 299.0));
 //        db.updateMenuItem(103, new MenuItem("Paneer Chilli", ItemType.VEG, 299.0));
 
-        Restaurant restaurant = db.getRestaurantById(102);
-        System.out.println(restaurant);
-        restaurant.displayMenu();
+//        db.deleteRestaurant(103);
+//        db.deleteRestaurant(102);
+//        db.deleteRestaurant(101);
+
+        //db.updateActivationStatus(102, true);
+
+        db.getRestaurantByType(CuisineType.FINE_DINING_RESTAURANT).forEach(e -> {
+            System.out.println(e);
+            e.displayMenu();
+        });
 
         // Finding all active restaurants
 //        List<Restaurant> restaurantList = repo.findAllActiveRestaurant();
