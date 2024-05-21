@@ -110,7 +110,7 @@ public class Restaurant {
                 ", location='" + location + '\'' +
                 ", openTime=" + openTime +
                 ", closeTime=" + closeTime +
-                ", isActive=" + ((isActive)?"Active\n": "Inactive\n");
+                ", status=" + ((isActive)?"Active\n": "Inactive\n");
     }
 
     public void displayMenu() {

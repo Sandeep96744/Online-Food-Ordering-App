@@ -63,13 +63,81 @@ public class RestaurantDatabaseRepositoryImpl implements RestaurantDatabaseRepos
 
     @Override
     public Restaurant getRestaurantById(int id) {
+        String query = "select * from restaurant where id = " + id + ";";
+        return finder(query).getFirst();
+    }
+
+    @Override
+    public Restaurant getRestaurantByLocation(String location) {
+        String query = "select * from restaurant where location = " + location + ";";
+        return finder(query).getFirst();
+    }
+
+    @Override
+    public Restaurant getRestaurantByName(String name) {
+        String query = "select * from restaurant where name = " + name + ";";
+        return finder(query).getFirst();
+    }
+
+    @Override
+    public List<Restaurant> getAllRestaurants() {
+        String query = "select * from restaurant;";
+        return finder(query);
+    }
+
+    @Override
+    public List<Restaurant> getAllActiveRestaurants() {
+        String query = "select * from restaurant where isActive = true;";
+        return finder(query);
+    }
+
+    @Override
+    public List<Restaurant> getAllDeActiveRestaurants() {
+        String query = "select * from restaurant where isActive = false;";
+        return finder(query);
+    }
+
+    @Override
+    public boolean updateActivationStatus(int id, boolean status) {
         try(Connection connection = JdbcConnectionUtil.getConnection()) {
-            String query = "select * from restaurant where id = " + id + ";";
+            String query = "update restaurant set isActive = " + status + " where id = " + id + ";";
+            PreparedStatement stm = connection.prepareStatement(query);
+
+            if(stm.executeUpdate() == 0)
+                throw new RuntimeException("Unable to update status!..");
+
+            System.out.println("Status Updated!..");
+            return true;
+        }
+        catch (SQLException ex) { throw new RuntimeException(ex.getMessage()); }
+    }
+
+    @Override
+    public boolean deleteRestaurant(int id) {
+        try(Connection connection = JdbcConnectionUtil.getConnection()) {
+            String menuQuery = "drop table menu" + id + ";";
+            String query = "delete from restaurant where id = " + id + ";";
+            PreparedStatement stm0 = connection.prepareStatement(menuQuery);
+            PreparedStatement stm = connection.prepareStatement(query);
+
+            if(stm.executeUpdate() == 0)
+                throw new RuntimeException("Record Doesn't Exists!..");
+
+            stm0.executeUpdate();
+            System.out.println("Record Deleted!..");
+            return true;
+        }
+        catch (SQLException ex) { throw new RuntimeException(ex.getMessage()); }
+    }
+
+    private List<Restaurant> finder(String query) {
+        try(Connection connection = JdbcConnectionUtil.getConnection()) {
             PreparedStatement stm = connection.prepareStatement(query);
             ResultSet resultSet = stm.executeQuery();
 
-            Restaurant restaurant = new Restaurant();
+            List<Restaurant> restaurantList = new ArrayList<>();
             while(resultSet.next()) {
+                Restaurant restaurant = new Restaurant();
                 restaurant.setId(resultSet.getInt(1));
                 restaurant.setName(resultSet.getString(2));
                 restaurant.setCuisineType(CuisineType.valueOf(resultSet.getString(3)));
@@ -91,44 +159,15 @@ public class RestaurantDatabaseRepositoryImpl implements RestaurantDatabaseRepos
                     menu.add(item);
                 }
                 restaurant.setMenu(menu);
+
+                restaurantList.add(restaurant);
             }
-            return restaurant;
+
+            if(restaurantList.isEmpty())
+                throw new RuntimeException("Record Doesn't Exists!..");
+
+            return restaurantList;
         }
         catch (SQLException ex) { throw new RuntimeException(ex.getMessage()); }
-    }
-
-    @Override
-    public Optional<Restaurant> getRestaurantByLocation(String location) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Restaurant> getRestaurantByName(String name) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<Restaurant> getAllRestaurants() {
-        return List.of();
-    }
-
-    @Override
-    public List<Restaurant> getAllActiveRestaurants() {
-        return List.of();
-    }
-
-    @Override
-    public List<Restaurant> getAllDeActiveRestaurants() {
-        return List.of();
-    }
-
-    @Override
-    public Optional<Restaurant> updateActivationStatus(Restaurant restaurant) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Restaurant> deleteRestaurant(int id) {
-        return Optional.empty();
     }
 }

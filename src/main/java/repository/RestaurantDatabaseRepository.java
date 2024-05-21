@@ -14,9 +14,9 @@ public interface RestaurantDatabaseRepository {
 
     public Restaurant getRestaurantById(int id);
 
-    public Optional<Restaurant> getRestaurantByLocation(String location);
+    public Restaurant getRestaurantByLocation(String location);
 
-    public Optional<Restaurant> getRestaurantByName(String name);
+    public Restaurant getRestaurantByName(String name);
 
     public List<Restaurant> getAllRestaurants();
 
@@ -24,7 +24,7 @@ public interface RestaurantDatabaseRepository {
 
     public List<Restaurant> getAllDeActiveRestaurants();
 
-    public Optional<Restaurant> updateActivationStatus(Restaurant restaurant);
+    public boolean updateActivationStatus(int id, boolean status);
 
-    public Optional<Restaurant> deleteRestaurant(int id);
+    public boolean deleteRestaurant(int id);
 }
